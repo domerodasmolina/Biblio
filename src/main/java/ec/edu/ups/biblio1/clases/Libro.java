@@ -11,7 +11,6 @@ import java.util.List;
  *
  * @author USER
  */
- 
 
 public class Libro {
     private String titulo;
@@ -21,11 +20,10 @@ public class Libro {
     private int numeroPag;
     private String ISBN;
     private boolean disponible;
-
-    // Asociación con Autor (1..* autores por libro)
+    // Atributo directo según UML: autores: List<Autor>
     private List<Autor> autores;
 
-    // Asociación con Editorial (composición, rombo negro)
+    // Asociación con Editorial (agregación, rombo blanco 1..*)
     private Editorial editorial;
 
     public Libro(String titulo, Date publicacion, String genero, String idioma,
@@ -44,6 +42,7 @@ public class Libro {
         }
     }
 
+    // Getters y Setters
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }
 
@@ -66,43 +65,52 @@ public class Libro {
     public void setDisponible(boolean disponible) { this.disponible = disponible; }
 
     public List<Autor> getAutores() { return autores; }
+    public void setAutores(List<Autor> autores) { this.autores = autores; }
+
     public Editorial getEditorial() { return editorial; }
+    public void setEditorial(Editorial editorial) { this.editorial = editorial; }
 
     public void agregarAutor(Autor autor) {
         autores.add(autor);
     }
 
     // Métodos del UML
-    public void editDatos(String titulo, String genero, String idioma) {
+    public void editarDatos(String titulo, String genero, String idioma) {
         this.titulo = titulo;
         this.genero = genero;
         this.idioma = idioma;
-        System.out.println("Datos actualizados para: " + this.titulo);
+        System.out.println("  [Libro] Datos actualizados: " + this.titulo);
     }
 
-    public void obtenerInfo() {
-        System.out.println("=== Información del Libro ===");
-        System.out.println("Título     : " + titulo);
-        System.out.println("ISBN       : " + ISBN);
-        System.out.println("Género     : " + genero);
-        System.out.println("Idioma     : " + idioma);
-        System.out.println("Páginas    : " + numeroPag);
-        System.out.println("Disponible : " + (disponible ? "Sí" : "No"));
-        System.out.println("Editorial  : " + (editorial != null ? editorial.getNombreEditorial() : "N/A"));
-        System.out.print("Autores    : ");
+    public String obtenerInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== Información del Libro ===\n");
+        sb.append("  Título     : ").append(titulo).append("\n");
+        sb.append("  ISBN       : ").append(ISBN).append("\n");
+        sb.append("  Género     : ").append(genero).append("\n");
+        sb.append("  Idioma     : ").append(idioma).append("\n");
+        sb.append("  Páginas    : ").append(numeroPag).append("\n");
+        sb.append("  Disponible : ").append(disponible ? "Sí" : "No").append("\n");
+        sb.append("  Editorial  : ")
+          .append(editorial != null ? editorial.getNombreEditorial() : "N/A").append("\n");
+        sb.append("  Autores    : ");
         for (Autor a : autores) {
-            System.out.print(a.getNombre() + " " + a.getApellido() + "; ");
+            sb.append(a.getNombre()).append(" ").append(a.getApellido()).append("; ");
         }
-        System.out.println();
+        System.out.println(sb.toString());
+        return sb.toString();
     }
 
     public void cambiarDispo() {
         this.disponible = !this.disponible;
-        System.out.println("Disponibilidad de \"" + titulo + "\": " + (disponible ? "Disponible" : "No disponible"));
+        System.out.println("  [Libro] Disponibilidad de \"" + titulo + "\": "
+                         + (disponible ? "Disponible" : "No disponible"));
     }
 
     @Override
     public String toString() {
-        return "Libro: " + titulo + " | ISBN: " + ISBN + " | Disponible: " + (disponible ? "Sí" : "No");
+        return "Libro: " + titulo
+             + " | ISBN: " + ISBN
+             + " | Disponible: " + (disponible ? "Sí" : "No");
     }
 }

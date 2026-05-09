@@ -7,32 +7,51 @@ package ec.edu.ups.biblio1.clases;
  *
  * @author USER
  */
- 
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bibliotecario extends Persona {
+    private String id;
     private String horario;
 
-    public Bibliotecario(String nombre, String apellido, String cedula, int edad, String horario) {
+    // Relación 1 Bibliotecario → 1..* Usuarios
+    private List<Usuario> usuariosRegistrados;
+
+    public Bibliotecario(String id, String nombre, String apellido,
+                         String cedula, int edad, String horario) {
         super(nombre, apellido, cedula, edad);
+        this.id = id;
         this.horario = horario;
+        this.usuariosRegistrados = new ArrayList<>();
     }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getHorario() { return horario; }
     public void setHorario(String horario) { this.horario = horario; }
 
+    public List<Usuario> getUsuariosRegistrados() { return usuariosRegistrados; }
+
     // Métodos del UML
     public void registrarUsuario(Usuario usuario) {
-        System.out.println("Bibliotecario [" + getNombre() + "] registró al usuario: " +
-                           usuario.getNombre() + " " + usuario.getApellido());
+        usuariosRegistrados.add(usuario);
+        System.out.println("  [Bibliotecario] " + getNombre()
+                         + " registró al usuario: "
+                         + usuario.getNombre() + " " + usuario.getApellido());
     }
 
     public void registrarLibro(Libro libro) {
-        System.out.println("Bibliotecario [" + getNombre() + "] registró el libro: " +
-                           libro.getTitulo() + " | ISBN: " + libro.getISBN());
+        System.out.println("  [Bibliotecario] " + getNombre()
+                         + " registró el libro: \""
+                         + libro.getTitulo() + "\" | ISBN: " + libro.getISBN());
     }
 
     @Override
     public String toString() {
-        return super.toString() + " | Horario: " + horario;
+        return "Bibliotecario ID: " + id
+             + " | " + super.toString()
+             + " | Horario: " + horario;
     }
 }

@@ -3,19 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ec.edu.ups.biblio1.clases;
+
 import java.util.Date;
 /**
  *
  * @author USER
  */
- 
 
 public class Prestamo {
     private int codigo;
     private Date fechaIni;
     private Date fechaFin;
 
-    // Asociación con Usuario (0..* préstamos por usuario) y Libro (1 libro por préstamo)
+    // Asociación 0..* con Usuario y 0..* con Libro según UML
     private Usuario usuario;
     private Libro libro;
 
@@ -25,7 +25,7 @@ public class Prestamo {
         this.fechaFin = fechaFin;
         this.usuario = usuario;
         this.libro = libro;
-        // Al crear el préstamo, el libro queda no disponible
+        // Al crear el préstamo el libro queda no disponible
         if (libro != null) {
             libro.setDisponible(false);
         }
@@ -51,16 +51,19 @@ public class Prestamo {
         if (libro != null) {
             libro.setDisponible(true);
         }
-        System.out.println("Préstamo #" + codigo + " cerrado.");
-        System.out.println("Libro \"" + (libro != null ? libro.getTitulo() : "N/A") + "\" devuelto.");
+        System.out.println("  [Préstamo] Préstamo #" + codigo + " cerrado.");
+        System.out.println("  [Préstamo] Libro \""
+                         + (libro != null ? libro.getTitulo() : "N/A")
+                         + "\" devuelto a la biblioteca.");
     }
 
     @Override
     public String toString() {
-        return "Préstamo #" + codigo +
-               " | Inicio: " + fechaIni +
-               " | Fin: " + fechaFin +
-               " | Libro: " + (libro != null ? libro.getTitulo() : "N/A") +
-               " | Usuario: " + (usuario != null ? usuario.getNombre() + " " + usuario.getApellido() : "N/A");
+        return "Préstamo #" + codigo
+             + " | Inicio: " + fechaIni
+             + " | Fin: " + fechaFin
+             + " | Libro: " + (libro != null ? libro.getTitulo() : "N/A")
+             + " | Usuario: " + (usuario != null
+                 ? usuario.getNombre() + " " + usuario.getApellido() : "N/A");
     }
 }

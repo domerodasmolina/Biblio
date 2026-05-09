@@ -7,17 +7,23 @@ package ec.edu.ups.biblio1.clases;
  *
  * @author USER
  */
- 
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario extends Persona {
     private String correo;
     private String contrasena;
+
+    // Un usuario puede tener 0..* préstamos
+    private List<Prestamo> prestamos;
 
     public Usuario(String nombre, String apellido, String cedula, int edad,
                    String correo, String contrasena) {
         super(nombre, apellido, cedula, edad);
         this.correo = correo;
         this.contrasena = contrasena;
+        this.prestamos = new ArrayList<>();
     }
 
     public String getCorreo() { return correo; }
@@ -26,15 +32,21 @@ public class Usuario extends Persona {
     public String getContrasena() { return contrasena; }
     public void setContrasena(String contrasena) { this.contrasena = contrasena; }
 
+    public List<Prestamo> getPrestamos() { return prestamos; }
+
+    // Métodos del UML
     public void solicitarPrestamo(Prestamo prestamo) {
-        System.out.println("Usuario [" + getNombre() + " " + getApellido() +
-                           "] solicita préstamo. Código: " + prestamo.getCodigo());
+        prestamos.add(prestamo);
+        System.out.println("  [Usuario] " + getNombre() + " " + getApellido()
+                         + " solicitó préstamo #" + prestamo.getCodigo()
+                         + " → Libro: " + (prestamo.getLibro() != null
+                             ? prestamo.getLibro().getTitulo() : "N/A"));
     }
 
     public void devolverLibro(Libro libro) {
         libro.setDisponible(true);
-        System.out.println("Usuario [" + getNombre() + " " + getApellido() +
-                           "] devolvió: " + libro.getTitulo());
+        System.out.println("  [Usuario] " + getNombre() + " " + getApellido()
+                         + " devolvió: " + libro.getTitulo());
     }
 
     @Override
