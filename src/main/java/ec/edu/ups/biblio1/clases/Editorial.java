@@ -15,7 +15,6 @@ public class Editorial {
     private String nombreEditorial;
     private String pais;
 
-    // Agregación: Editorial contiene 1..* Libros
     private List<Libro> libros;
 
     public Editorial(String nombreEditorial, String pais) {
@@ -24,18 +23,27 @@ public class Editorial {
         this.libros = new ArrayList<>();
     }
 
-    public String getNombreEditorial() { return nombreEditorial; }
-    public void setNombreEditorial(String nombreEditorial) { this.nombreEditorial = nombreEditorial; }
+    public String getNombreEditorial() {
+        return nombreEditorial; 
+    }
+    public void setNombreEditorial(String nombreEditorial) {
+        this.nombreEditorial = nombreEditorial;
+    }
 
-    public String getPais() { return pais; }
-    public void setPais(String pais) { this.pais = pais; }
+    public String getPais() {
+        return pais; 
+    }
+    public void setPais(String pais) { 
+        this.pais = pais; 
+    }
 
-    public List<Libro> getLibros() { return libros; }
+    public List<Libro> getLibros() {
+        return libros; 
+    }
 
     public void agregarLibro(Libro libro) {
         libros.add(libro);
-        System.out.println("  [Editorial] Libro \"" + libro.getTitulo()
-                         + "\" agregado a " + nombreEditorial);
+        System.out.println("  [Editorial] Libro \"" + libro.getTitulo()+ "\" agregado a " + nombreEditorial);
     }
 
     @Override
