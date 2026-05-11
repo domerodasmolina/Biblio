@@ -31,20 +31,40 @@ public class Prestamo {
         }
     }
 
-    public int getCodigo() { return codigo; }
-    public void setCodigo(int codigo) { this.codigo = codigo; }
+    public int getCodigo() { 
+        return codigo; 
+    }
+    public void setCodigo(int codigo) { 
+        this.codigo = codigo; 
+    }
 
-    public Date getFechaIni() { return fechaIni; }
-    public void setFechaIni(Date fechaIni) { this.fechaIni = fechaIni; }
+    public Date getFechaIni() {
+        return fechaIni; 
+    }
+    public void setFechaIni(Date fechaIni) { 
+        this.fechaIni = fechaIni; 
+    }
 
-    public Date getFechaFin() { return fechaFin; }
-    public void setFechaFin(Date fechaFin) { this.fechaFin = fechaFin; }
+    public Date getFechaFin() { 
+        return fechaFin;
+    }
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin; 
+    }
 
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public Usuario getUsuario() { 
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario; 
+    }
 
-    public Libro getLibro() { return libro; }
-    public void setLibro(Libro libro) { this.libro = libro; }
+    public Libro getLibro() { 
+        return libro; 
+    }
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
 
     // Método del UML
     public void cerrarPrestamo() {
@@ -52,9 +72,7 @@ public class Prestamo {
             libro.setDisponible(true);
         }
         System.out.println("  [Préstamo] Préstamo #" + codigo + " cerrado.");
-        System.out.println("  [Préstamo] Libro \""
-                         + (libro != null ? libro.getTitulo() : "N/A")
-                         + "\" devuelto a la biblioteca.");
+        System.out.println("  [Préstamo] Libro \""+ (libro != null ? libro.getTitulo() : "N/A") + "\" devuelto a la biblioteca.");
     }
 
     @Override

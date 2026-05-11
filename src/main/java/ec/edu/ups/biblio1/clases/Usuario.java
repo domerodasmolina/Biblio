@@ -26,27 +26,33 @@ public class Usuario extends Persona {
         this.prestamos = new ArrayList<>();
     }
 
-    public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
+    public String getCorreo() { 
+        return correo;
+    }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
-    public String getContrasena() { return contrasena; }
-    public void setContrasena(String contrasena) { this.contrasena = contrasena; }
+    public String getContrasena() {
+        return contrasena; 
+    }
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
-    public List<Prestamo> getPrestamos() { return prestamos; }
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
 
     // Métodos del UML
     public void solicitarPrestamo(Prestamo prestamo) {
         prestamos.add(prestamo);
-        System.out.println("  [Usuario] " + getNombre() + " " + getApellido()
-                         + " solicitó préstamo #" + prestamo.getCodigo()
-                         + " → Libro: " + (prestamo.getLibro() != null
-                             ? prestamo.getLibro().getTitulo() : "N/A"));
+        System.out.println("  [Usuario] " + getNombre() + " " + getApellido()+ " solicitó préstamo #" + prestamo.getCodigo() + " → Libro: " + (prestamo.getLibro() != null? prestamo.getLibro().getTitulo() : "N/A"));
     }
 
     public void devolverLibro(Libro libro) {
         libro.setDisponible(true);
-        System.out.println("  [Usuario] " + getNombre() + " " + getApellido()
-                         + " devolvió: " + libro.getTitulo());
+        System.out.println("  [Usuario] " + getNombre() + " " + getApellido()+ " devolvió: " + libro.getTitulo());
     }
 
     @Override
