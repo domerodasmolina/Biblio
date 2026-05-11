@@ -16,14 +16,14 @@ import java.util.Scanner;
 
 public class Biblio1 {
 
-    static Scanner      sc             = new Scanner(System.in);
-    static List<Editorial>  editoriales = new ArrayList<>();
-    static List<Autor>      autores     = new ArrayList<>();
-    static List<Libro>      libros      = new ArrayList<>();
-    static List<Usuario>    usuarios    = new ArrayList<>();
-    static List<Prestamo>   prestamos   = new ArrayList<>();
-    static Bibliotecario    bibliotecario = null;
-    static int              codigoPrestamo = 1001;
+    static Scanner sc = new Scanner(System.in);
+    static List<Editorial>editoriales = new ArrayList<>();
+    static List<Autor>autores = new ArrayList<>();
+    static List<Libro>libros = new ArrayList<>();
+    static List<Usuario>usuarios = new ArrayList<>();
+    static List<Prestamo> prestamos = new ArrayList<>();
+    static Bibliotecario bibliotecario = null;
+    static int codigoPrestamo = 1001;
 
     public static void main(String[] args) {
 
